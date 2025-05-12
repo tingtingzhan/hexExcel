@@ -1,0 +1,113 @@
+---
+title: "Excel-Style Hexavigesimal (A to Z)"
+author: Tingting Zhan
+format: 
+  html:
+    page-layout: full
+    html-math-method: katex
+toc: true
+toc-location: left
+toc-depth: 4
+toc-title: ''
+editor: visual
+vignette: >
+  %\VignetteIndexEntry{intro}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+This vignette of package **`hexExcel`** ([Github](https://github.com/tingtingzhan/hexExcel), [RPubs](https://rpubs.com/tingtingzhan/hexExcel)) documents ...
+
+## Prerequisite
+
+New features are first implemented on [Github](https://github.com/tingtingzhan/TukeyGH77).
+
+```{r}
+#| warning: false
+#| eval: false
+remotes::install_github('tingtingzhan/hexExcel')
+```
+
+## Note to Users
+
+Examples in this vignette require that the `search` path has
+
+```{r}
+#| message: false
+library(hexExcel)
+```
+
+```{r}
+#| echo: false
+library(knitr) # for tables in this vignette
+#options(mc.cores = 1L) # for CRAN submission
+```
+
+## Terms and Abbreviations
+
+```{r}
+#| echo: false
+#| results: asis
+c(
+  '[|>](https://search.r-project.org/R/refmans/base/html/pipeOp.html)', 'Forward pipe operator introduced in `R` 4.1.0', 
+  '`$`', '[Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object',
+  '`CRAN`, `R`', '[The Comprehensive R Archive Network](https://cran.r-project.org)',
+  '[`class`](https://search.r-project.org/R/refmans/base/html/class.html)', 'Object class',
+  'hexavigesimal', 'In [C-style](https://mathworld.wolfram.com/Hexavigesimal.html)',
+  '`S3`, `generic`, [`methods`](https://search.r-project.org/R/refmans/utils/html/methods.html)', '`S3` object oriented system, [`UseMethod`](https://search.r-project.org/R/refmans/base/html/UseMethod.html); [`getS3method`](https://search.r-project.org/R/refmans/utils/html/getS3method.html); <https://adv-r.hadley.nz/s3.html>',  
+  '`S4`, `generic`, `methods`', '`S4` object oriented system, [`isS4`](https://search.r-project.org/R/refmans/base/html/isS4.html); [`setClass`](https://search.r-project.org/R/refmans/methods/html/setClass.html); [`getMethod`](https://search.r-project.org/R/refmans/methods/html/getMethod.html); <https://adv-r.hadley.nz/s4.html>',
+  '[`search`](https://search.r-project.org/R/refmans/base/html/search.html)', 'Search path'
+) |>
+  matrix(nrow = 2L, dimnames = list(c('Term / Abbreviation', 'Description'), NULL)) |>
+  t.default() |>
+  as.data.frame.matrix() |> 
+  kable() 
+```
+
+# Conversion Table
+
+Convert between decimal, C-style hexavigesimal, and Excel-style hexavigesimal.
+
+```{r}
+#| results: asis
+i = c(1L, 9L, 10L, 25L, 26L, 27L, 51L, 52L, 676L, 702L, 703L)
+c(
+  'Hexavigesimal, Excel-style', paste0('`', i |> int2Excel(), '`'),
+  'Hexavigesimal, C-style', paste0('`', i |> int2Excel() |> Excel2C() |> toupper(), '`')
+) |>
+  matrix(ncol = 2L, dimnames = list(c('Decimal to Hexavigesimal', as.character(i)), NULL)) |>
+  t.default() |>
+  as.data.frame.matrix() |> 
+  kable() 
+```
+
+## `Excel2C()`
+
+Function \[Excel2C\] converts Excel-style hexavigesimal (`A-Z`) to C-style hexavigesimal (`0-9, A-P`).
+
+```{r}
+c(NA_character_, 'a', 'D', 's', 'aK', 'cZ', 'Zb') |>
+  Excel2C()
+```
+
+## `Excel2int()`
+
+Function `Excel2int()` converts Excel-style hexavigesimal (`A-Z`) to decimal, using function `Excel2C()` and `base::strtoi()`.
+
+```{r}
+c(NA_character_, 'a', 'D', 's', 'aK', 'cZ', 'Zb') |>
+  Excel2int()
+```
+
+## `int2Excel()`
+
+Function `int2Excel()` converts decimal to Excel-style hexavigesimal (`A-Z`).
+
+Function `int2Excel()` works very differently from `R`'s solution to hexadecimal and decimal conversions. Function `base::as.hexmode()` returns an object of `typeof` `integer`. Then, function `base::format.hexmode()`, i.e., the workhorse of function `base::print.hexmode()`, relies on the `%x` (hexadecimal) format option of function `base::sprintf()`.
+
+```{r}
+c(NA_integer_, 1L, 4L, 19L, 37L, 104L, 678L) |> 
+  int2Excel()
+```

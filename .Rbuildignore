@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^CRAN-SUBMISSION$
+vignettes/.*_files
+vignettes/.*.html
+vignettes/rsconnect

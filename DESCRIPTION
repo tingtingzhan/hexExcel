@@ -1,0 +1,17 @@
+Package: hexExcel
+Type: Package
+Title: Excel-Style Hexavigesimal (A to Z)
+Version: 0.1.3
+Date: 2025-05-15
+Description: Excel-Style Hexavigesimal (A to Z).
+License: GPL-2
+Encoding: UTF-8
+Authors@R: c(person(given = "Tingting", family = "Zhan", role =
+       c("aut", "cre"), email = c("tingtingzhan@gmail.com"), comment
+       = c(ORCID = '0000-0001-9971-4844')))
+Language: en-US
+Roxygen: list(markdown = TRUE)
+Depends: R (>= 4.5.0)
+Suggests: knitr, quarto, rmarkdown
+RoxygenNote: 7.3.2
+VignetteBuilder: quarto
