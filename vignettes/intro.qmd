@@ -47,24 +47,18 @@ library(knitr) # for tables in this vignette
 
 ## Terms and Abbreviations
 
-```{r}
-#| echo: false
-#| results: asis
-c(
-  '[|>](https://search.r-project.org/R/refmans/base/html/pipeOp.html)', 'Forward pipe operator introduced in `R` 4.1.0', 
-  '`$`', '[Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object',
-  '`CRAN`, `R`', '[The Comprehensive R Archive Network](https://cran.r-project.org)',
-  '[`class`](https://search.r-project.org/R/refmans/base/html/class.html)', 'Object class',
-  'hexavigesimal', 'In [C-style](https://mathworld.wolfram.com/Hexavigesimal.html)',
-  '`S3`, `generic`, [`methods`](https://search.r-project.org/R/refmans/utils/html/methods.html)', '`S3` object oriented system, [`UseMethod`](https://search.r-project.org/R/refmans/base/html/UseMethod.html); [`getS3method`](https://search.r-project.org/R/refmans/utils/html/getS3method.html); <https://adv-r.hadley.nz/s3.html>',  
-  '`S4`, `generic`, `methods`', '`S4` object oriented system, [`isS4`](https://search.r-project.org/R/refmans/base/html/isS4.html); [`setClass`](https://search.r-project.org/R/refmans/methods/html/setClass.html); [`getMethod`](https://search.r-project.org/R/refmans/methods/html/getMethod.html); <https://adv-r.hadley.nz/s4.html>',
-  '[`search`](https://search.r-project.org/R/refmans/base/html/search.html)', 'Search path'
-) |>
-  matrix(nrow = 2L, dimnames = list(c('Term / Abbreviation', 'Description'), NULL)) |>
-  t.default() |>
-  as.data.frame.matrix() |> 
-  kable() 
-```
+| Term / Abbreviation | Description |
+|------------------------------------|------------------------------------|
+| [`|>`](https://search.r-project.org/R/refmans/base/html/pipeOp.html) | Forward pipe operator introduced in `R` 4.1.0 |
+| `$` | [Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object |
+| `CRAN`, `R` | [The Comprehensive R Archive Network](https://cran.r-project.org) |
+| [`class`](https://search.r-project.org/R/refmans/base/html/class.html) | Object class |
+| hexadecimal, [`as.hexmode`](https://search.r-project.org/R/refmans/base/html/hexmode.html) | Base-16 number system |
+| hexavigesimal | Base-26 number system, in [C-style](https://mathworld.wolfram.com/Hexavigesimal.html) |
+| `S3`, `generic`, [`methods`](https://search.r-project.org/R/refmans/utils/html/methods.html) | `S3` object oriented system, [`UseMethod`](https://search.r-project.org/R/refmans/base/html/UseMethod.html); [`getS3method`](https://search.r-project.org/R/refmans/utils/html/getS3method.html); <https://adv-r.hadley.nz/s3.html> |
+| `S4`, `generic`, `methods` | `S4` object oriented system, [`isS4`](https://search.r-project.org/R/refmans/base/html/isS4.html); [`setClass`](https://search.r-project.org/R/refmans/methods/html/setClass.html); [`getMethod`](https://search.r-project.org/R/refmans/methods/html/getMethod.html); <https://adv-r.hadley.nz/s4.html> |
+| [`search`](https://search.r-project.org/R/refmans/base/html/search.html) | Search path |
+
 
 # Conversion Table
 
@@ -85,7 +79,7 @@ c(
 
 ## `Excel2C()`
 
-Function \[Excel2C\] converts Excel-style hexavigesimal (`A-Z`) to C-style hexavigesimal (`0-9, A-P`).
+Function `Excel2C()` converts Excel-style hexavigesimal `A-Z` to C-style hexavigesimal `0-9, A-P`.
 
 ```{r}
 c(NA_character_, 'a', 'D', 's', 'aK', 'cZ', 'Zb') |>
@@ -94,7 +88,7 @@ c(NA_character_, 'a', 'D', 's', 'aK', 'cZ', 'Zb') |>
 
 ## `Excel2int()`
 
-Function `Excel2int()` converts Excel-style hexavigesimal (`A-Z`) to decimal, using function `Excel2C()` and `base::strtoi()`.
+Function `Excel2int()` converts Excel-style hexavigesimal `A-Z` to decimal, using function `Excel2C()` and `base::strtoi()`.
 
 ```{r}
 c(NA_character_, 'a', 'D', 's', 'aK', 'cZ', 'Zb') |>
@@ -103,7 +97,7 @@ c(NA_character_, 'a', 'D', 's', 'aK', 'cZ', 'Zb') |>
 
 ## `int2Excel()`
 
-Function `int2Excel()` converts decimal to Excel-style hexavigesimal (`A-Z`).
+Function `int2Excel()` converts decimal to Excel-style hexavigesimal `A-Z`.
 
 Function `int2Excel()` works very differently from `R`'s solution to hexadecimal and decimal conversions. Function `base::as.hexmode()` returns an object of `typeof` `integer`. Then, function `base::format.hexmode()`, i.e., the workhorse of function `base::print.hexmode()`, relies on the `%x` (hexadecimal) format option of function `base::sprintf()`.
 
