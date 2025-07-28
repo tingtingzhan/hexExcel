@@ -2,7 +2,6 @@ Package: hexExcel
 Type: Package
 Title: Excel-Style Hexavigesimal (A to Z)
 Version: 0.1.3
-Date: 2025-05-15
 Description: Excel-Style Hexavigesimal (A to Z).
 License: GPL-2
 Encoding: UTF-8

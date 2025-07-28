@@ -20,13 +20,13 @@ which consists of (except missingness)
 only letters \code{A} to \code{Z} and \code{a} to \code{z}.}
 }
 \value{
-Function \link{Excel2int} returns an
+Function \code{\link[=Excel2int]{Excel2int()}} returns an
 \link[base]{integer} \link[base]{vector}.
 
-Function \link{Excel2C} returns a
+Function \code{\link[=Excel2C]{Excel2C()}} returns a
 \link[base]{character} \link[base]{vector}.
 
-Function \link{int2Excel} returns a
+Function \code{\link[=int2Excel]{int2Excel()}} returns a
 \link[base]{integer} \link[base]{vector}.
 }
 \description{

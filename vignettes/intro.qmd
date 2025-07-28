@@ -9,7 +9,7 @@ toc: true
 toc-location: left
 toc-depth: 4
 toc-title: ''
-editor: visual
+editor: source
 vignette: >
   %\VignetteIndexEntry{intro}
   %\VignetteEngine{quarto::html}
@@ -44,21 +44,6 @@ library(hexExcel)
 library(knitr) # for tables in this vignette
 #options(mc.cores = 1L) # for CRAN submission
 ```
-
-## Terms and Abbreviations
-
-| Term / Abbreviation | Description |
-|------------------------------------|------------------------------------|
-| [`|>`](https://search.r-project.org/R/refmans/base/html/pipeOp.html) | Forward pipe operator introduced in `R` 4.1.0 |
-| `$` | [Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object |
-| `CRAN`, `R` | [The Comprehensive R Archive Network](https://cran.r-project.org) |
-| [`class`](https://search.r-project.org/R/refmans/base/html/class.html) | Object class |
-| hexadecimal, [`as.hexmode`](https://search.r-project.org/R/refmans/base/html/hexmode.html) | Base-16 number system |
-| hexavigesimal | Base-26 number system, in [C-style](https://mathworld.wolfram.com/Hexavigesimal.html) |
-| `S3`, `generic`, [`methods`](https://search.r-project.org/R/refmans/utils/html/methods.html) | `S3` object oriented system, [`UseMethod`](https://search.r-project.org/R/refmans/base/html/UseMethod.html); [`getS3method`](https://search.r-project.org/R/refmans/utils/html/getS3method.html); <https://adv-r.hadley.nz/s3.html> |
-| `S4`, `generic`, `methods` | `S4` object oriented system, [`isS4`](https://search.r-project.org/R/refmans/base/html/isS4.html); [`setClass`](https://search.r-project.org/R/refmans/methods/html/setClass.html); [`getMethod`](https://search.r-project.org/R/refmans/methods/html/getMethod.html); <https://adv-r.hadley.nz/s4.html> |
-| [`search`](https://search.r-project.org/R/refmans/base/html/search.html) | Search path |
-
 
 # Conversion Table
 
@@ -105,3 +90,20 @@ Function `int2Excel()` works very differently from `R`'s solution to hexadecimal
 c(NA_integer_, 1L, 4L, 19L, 37L, 104L, 678L) |> 
   int2Excel()
 ```
+
+# Appendix
+
+## Terms and Abbreviations
+
+| Term / Abbreviation | Description |
+|------------------------------------|------------------------------------|
+| [`|>`](https://search.r-project.org/R/refmans/base/html/pipeOp.html) | Forward pipe operator introduced in `R` 4.1.0 |
+| `$` | [Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object |
+| `CRAN`, `R` | [The Comprehensive R Archive Network](https://cran.r-project.org) |
+| [`class`](https://search.r-project.org/R/refmans/base/html/class.html) | Object class |
+| hexadecimal, [`as.hexmode`](https://search.r-project.org/R/refmans/base/html/hexmode.html) | Base-16 number system |
+| hexavigesimal | Base-26 number system, in [C-style](https://mathworld.wolfram.com/Hexavigesimal.html) |
+| `S3`, `generic`, [`methods`](https://search.r-project.org/R/refmans/utils/html/methods.html) | `S3` object oriented system, [`UseMethod`](https://search.r-project.org/R/refmans/base/html/UseMethod.html); [`getS3method`](https://search.r-project.org/R/refmans/utils/html/getS3method.html); <https://adv-r.hadley.nz/s3.html> |
+| `S4`, `generic`, `methods` | `S4` object oriented system, [`isS4`](https://search.r-project.org/R/refmans/base/html/isS4.html); [`setClass`](https://search.r-project.org/R/refmans/methods/html/setClass.html); [`getMethod`](https://search.r-project.org/R/refmans/methods/html/getMethod.html); <https://adv-r.hadley.nz/s4.html> |
+| [`search`](https://search.r-project.org/R/refmans/base/html/search.html) | Search path |
+

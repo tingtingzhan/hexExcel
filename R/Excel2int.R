@@ -13,13 +13,13 @@
 #'  
 #' @returns 
 #' 
-#' Function [Excel2int] returns an 
+#' Function [Excel2int()] returns an 
 #' \link[base]{integer} \link[base]{vector}.
 #' 
-#' Function [Excel2C] returns a 
+#' Function [Excel2C()] returns a 
 #' \link[base]{character} \link[base]{vector}.
 #' 
-#' Function [int2Excel] returns a 
+#' Function [int2Excel()] returns a 
 #' \link[base]{integer} \link[base]{vector}.
 #' 
 #' @keywords internal
