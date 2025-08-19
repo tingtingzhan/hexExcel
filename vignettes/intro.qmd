@@ -10,6 +10,10 @@ toc-location: left
 toc-depth: 4
 toc-title: ''
 editor: source
+knitr:
+  opts_chunk: 
+    collapse: true
+    comment: "#" 
 vignette: >
   %\VignetteIndexEntry{intro}
   %\VignetteEngine{quarto::html}
@@ -35,31 +39,35 @@ remotes::install_github('tingtingzhan/hexExcel')
 Examples in this vignette require that the `search` path has
 
 ```{r}
-#| message: false
 library(hexExcel)
 ```
 
 ```{r}
 #| echo: false
-library(knitr) # for tables in this vignette
 #options(mc.cores = 1L) # for CRAN submission
 ```
 
 # Conversion Table
 
-Convert between decimal, C-style hexavigesimal, and Excel-style hexavigesimal.
+Convert between decimal `integer`, C-style hexavigesimal `0-9, A-P`, and Excel-style hexavigesimal `A-Z`.
 
 ```{r}
+int = c(NA_integer_, 1L, 9L, 10L, 25L, 26L, 27L, 51L, 52L, 676L, 702L, 703L)
+hex_Excel = int |> int2Excel()
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: 'R code: to create this table'
 #| results: asis
-i = c(1L, 9L, 10L, 25L, 26L, 27L, 51L, 52L, 676L, 702L, 703L)
 c(
-  'Hexavigesimal, Excel-style', paste0('`', i |> int2Excel(), '`'),
-  'Hexavigesimal, C-style', paste0('`', i |> int2Excel() |> Excel2C() |> toupper(), '`')
+  'Hexavigesimal, Excel-Style', paste0('`', hex_Excel, '`'),
+  'Hexavigesimal, C-Style', paste0('`', hex_Excel |> Excel2C() |> toupper(), '`')
 ) |>
-  matrix(ncol = 2L, dimnames = list(c('Decimal to Hexavigesimal', as.character(i)), NULL)) |>
+  matrix(ncol = 2L, dimnames = list(c('Decimal `integer` to Hexavigesimal', as.character(int)), NULL)) |>
   t.default() |>
   as.data.frame.matrix() |> 
-  kable() 
+  knitr::kable() 
 ```
 
 ## `Excel2C()`
@@ -67,39 +75,40 @@ c(
 Function `Excel2C()` converts Excel-style hexavigesimal `A-Z` to C-style hexavigesimal `0-9, A-P`.
 
 ```{r}
-c(NA_character_, 'a', 'D', 's', 'aK', 'cZ', 'Zb') |>
+hex_Excel |>
   Excel2C()
 ```
 
 ## `Excel2int()`
 
-Function `Excel2int()` converts Excel-style hexavigesimal `A-Z` to decimal, using function `Excel2C()` and `base::strtoi()`.
+Function `Excel2int()` converts Excel-style hexavigesimal `A-Z` to decimal `integer`, using function `Excel2C()` and `base::strtoi()`.
 
 ```{r}
-c(NA_character_, 'a', 'D', 's', 'aK', 'cZ', 'Zb') |>
+hex_Excel |>
   Excel2int()
 ```
 
 ## `int2Excel()`
 
-Function `int2Excel()` converts decimal to Excel-style hexavigesimal `A-Z`.
-
-Function `int2Excel()` works very differently from `R`'s solution to hexadecimal and decimal conversions. Function `base::as.hexmode()` returns an object of `typeof` `integer`. Then, function `base::format.hexmode()`, i.e., the workhorse of function `base::print.hexmode()`, relies on the `%x` (hexadecimal) format option of function `base::sprintf()`.
+Function `int2Excel()` converts decimal `integer` to Excel-style hexavigesimal `A-Z`.
 
 ```{r}
-c(NA_integer_, 1L, 4L, 19L, 37L, 104L, 678L) |> 
+int |> 
   int2Excel()
 ```
 
+Function `int2Excel()` works very differently from R's solution to hexadecimal and decimal conversions. Function `base::as.hexmode()` returns an object of `typeof` `integer`. Then, function `base::format.hexmode()`, i.e., the workhorse of function `base::print.hexmode()`, relies on the `%x` (hexadecimal) format option of function `base::sprintf()`.
+
+
 # Appendix
 
-## Terms and Abbreviations
+## Terms & Abbreviations
 
 | Term / Abbreviation | Description |
 |------------------------------------|------------------------------------|
-| [`|>`](https://search.r-project.org/R/refmans/base/html/pipeOp.html) | Forward pipe operator introduced in `R` 4.1.0 |
+| [`|>`](https://search.r-project.org/R/refmans/base/html/pipeOp.html) | Forward pipe operator introduced since R 4.1.0 |
 | `$` | [Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object |
-| `CRAN`, `R` | [The Comprehensive R Archive Network](https://cran.r-project.org) |
+| CRAN, R | [The Comprehensive R Archive Network](https://cran.r-project.org) |
 | [`class`](https://search.r-project.org/R/refmans/base/html/class.html) | Object class |
 | hexadecimal, [`as.hexmode`](https://search.r-project.org/R/refmans/base/html/hexmode.html) | Base-16 number system |
 | hexavigesimal | Base-26 number system, in [C-style](https://mathworld.wolfram.com/Hexavigesimal.html) |
