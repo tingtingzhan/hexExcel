@@ -61,8 +61,8 @@ hex_Excel = int |> int2Excel()
 #| code-summary: 'R code: to create this table'
 #| results: asis
 c(
-  'Hexavigesimal, Excel-Style', paste0('`', hex_Excel, '`'),
-  'Hexavigesimal, C-Style', paste0('`', hex_Excel |> Excel2C() |> toupper(), '`')
+  'Hexavigesimal, Excel-Style', hex_Excel |> sprintf(fmt = '`%s`'),
+  'Hexavigesimal, C-Style', hex_Excel |> Excel2C() |> toupper() |> sprintf(fmt = '`%s`')
 ) |>
   matrix(ncol = 2L, dimnames = list(c('Decimal `integer` to Hexavigesimal', as.character(int)), NULL)) |>
   t.default() |>
