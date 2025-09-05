@@ -12,5 +12,5 @@ Language: en-US
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.5.0)
 Suggests: knitr, quarto, rmarkdown
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 VignetteBuilder: quarto

@@ -1,6 +1,7 @@
 ---
 title: "Excel-Style Hexavigesimal (A to Z)"
 author: Tingting Zhan
+date: today
 format: 
   html:
     page-layout: full
@@ -47,7 +48,7 @@ library(hexExcel)
 #options(mc.cores = 1L) # for CRAN submission
 ```
 
-# Conversion Table
+# Conversion Rule
 
 Convert between decimal `integer`, C-style hexavigesimal `0-9, A-P`, and Excel-style hexavigesimal `A-Z`.
 
@@ -97,12 +98,12 @@ int |>
   int2Excel()
 ```
 
-Function `int2Excel()` works very differently from R's solution to hexadecimal and decimal conversions. Function `base::as.hexmode()` returns an object of `typeof` `integer`. Then, function `base::format.hexmode()`, i.e., the workhorse of function `base::print.hexmode()`, relies on the `%x` (hexadecimal) format option of function `base::sprintf()`.
+Function `int2Excel()` works very differently from R's solution to hexadecimal and decimal conversions. Function `base::as.hexmode()` returns an object of `typeof` `integer`. Then, function `base::format.hexmode()`, i.e., the workhorse of function `base::print.hexmode()`, relies on the function `base::sprintf(fmt = '%x', .)` (hexadecimal format option).
 
 
 # Appendix
 
-## Terms & Abbreviations
+# Terms & Abbreviations
 
 | Term / Abbreviation | Description |
 |------------------------------------|------------------------------------|
